@@ -1,0 +1,18 @@
+<mvc:View controllerName="com.techm.browseorders.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>Browse Orders}">
+        <content />
+            <List id="OrderList" headerText="Orders" items="{OrderModel>/}" itemPress="onListPress" 
+            growing="true" growingThreshold="5">
+            <items>
+                <ObjectListItem type="Navigation"
+                    title="Order {OrderModel>OrderID}"> 
+                    <!-- number="{OrderModel>OrderDate}" -->
+                    <ObjectAttribute text="{OrderModel>CustomerName}"></ObjectAttribute>
+                    <ObjectAttribute text="{path:'OrderModel>ShippedDate', formatter:'.formatter.formatDate'}"></ObjectAttribute>                       
+                </ObjectListItem>
+            </items>
+            </List>
+    </Page>
+</mvc:View>

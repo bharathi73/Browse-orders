@@ -1,0 +1,132 @@
+<mvc:View controllerName="com.techm.browseorders.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m" xmlns="sap.uxap" xmlns:f="sap.ui.layout.form">
+        <ObjectPageLayout id="ObjectPageLayout">
+            <headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="Order {OrderModel>OrderID}"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:Title text="Order {OrderModel>OrderID}"/>
+				</snappedHeading>
+            </ObjectPageDynamicHeaderTitle>
+            </headerTitle>
+            <headerContent>
+                <f:SimpleForm >
+                    <f:content>
+                        <m:Label text="Customer" />
+                        <m:Text text="{OrderModel>CustomerName}" />
+                        <m:Label text="Ordered" />
+                        <m:Text text="{dateModel>/OrderDate}" />
+                        
+                    </f:content>
+                </f:SimpleForm>
+            </headerContent>
+            <sections>
+                <ObjectPageSection titleUppercase="false">
+                    <subSections>
+                        <ObjectPageSubSection titleUppercase="false">
+                            <m:IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+                            <m:items>
+                            <m:IconTabFilter icon="sap-icon://shipping-status">
+                            <f:SimpleForm >
+                                <f:content>
+                                    <m:Title text="Shipping Address"></m:Title>
+                                    <m:Label text="Name" />
+                                    <m:Text text="{OrderModel>ShipName}" />
+                                    <m:Label text="Street" />
+                                    <m:Text text="{OrderModel>ShipAddress}" />
+                                    <m:Label text="ZIP Code/City" />
+                                    <m:Text text="{OrderModel>ShipPostalCode} {OrderModel>ShipCity}"/>
+                                    <m:Label text="Region"/>
+                                    <m:Text text="{OrderModel>ShipRegion}" />
+                                    <m:Label text="Country" />
+                                    <m:Text text="{OrderModel>ShipCountry}" />
+                                </f:content>
+                            </f:SimpleForm>
+                            </m:IconTabFilter>
+                            <m:IconTabFilter icon="sap-icon://employee">
+                            <f:SimpleForm >
+                                <f:content>
+                                    <m:Title text="Processor Information"></m:Title>
+                                    <m:Label text="Name" />
+                                    <m:Text text="{EmployeeModel>/0/FirstName} {EmployeeModel>/0/LastName}" />
+                                    <m:Label text="Employee ID" />
+                                    <m:Text text="{EmployeeModel>}" />
+                                    <m:Label text="Job Title" />
+                                    <m:Text text="{EmployeeModel>}"/>
+                                    <m:Label text="Phone"/>
+                                    <m:Text text="{EmployeeModel>}" />
+                                    <m:Label text="Photo" />
+                                    <m:Text text="{EmployeeModel>}" />
+                                </f:content>
+                            </f:SimpleForm>
+                            </m:IconTabFilter>
+                            </m:items>
+                            </m:IconTabBar>
+                        </ObjectPageSubSection>
+                    </subSections>
+                    <subSections>
+                        <ObjectPageSubSection title="Line Items" >
+                            <m:Table
+                                    id="table"
+                                    class="sapUiResponsiveMargin"
+                                    width="auto"
+                                    items="{
+                                        path: 'dataModel>/'
+                                    }">
+                                        <m:headerToolbar>
+                                                <m:Toolbar>
+                                                    <m:Title
+                                                        id="tableHeader"
+                                                        text="Line Items {countModel>/Count}"/>
+                                                </m:Toolbar>
+                                                </m:headerToolbar>
+ 
+                                <m:columns>
+                                             <m:Column>
+                                                <m:Text text="Product Name"/>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Text text="Unit Price"/>
+                                            </m:Column>
+                                            <m:Column >
+                                                <m:Text text="Unit Quantity"/>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Text text="Total"/>
+                                            </m:Column>
+ 
+                                        </m:columns>
+                                             <m:items>
+                                                <m:ColumnListItem
+                                                  >
+                                                    <m:cells>
+                                                        <m:ObjectIdentifier
+                                                            title="{dataModel>ProductName} "
+                                                            />
+                                                         <m:ObjectNumber
+                                                            number="{dataModel>UnitPrice}"
+                                                          />
+                                               
+                                                        <m:ObjectNumber
+                                                            number="{dataModel>Quantity}"
+                                                          />
+                                                        <m:ObjectNumber
+                                                            number="{dataModel>Total}"
+                                                            unit="EUR"
+                                                              />
+                                                    </m:cells>
+                                                </m:ColumnListItem>
+                                                </m:items>
+                                               
+ 
+                  </m:Table>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+            </sections>
+        </ObjectPageLayout>
+</mvc:View>

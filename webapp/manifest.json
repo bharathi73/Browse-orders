@@ -1,0 +1,161 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "com.techm.browseorders",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.14.1",
+      "toolsId": "0266af40-1f60-432e-a28a-4a7efcf7d7c4"
+    },
+    "dataSources": {
+      "OrdersJSONData":{
+      "uri":"model/orders.json",
+      "type": "JSON"
+      },
+      "EmployeesJSONData":{
+        "uri":"model/employees.json",
+        "type": "JSON"
+      },
+      "OrdersDetailJSONData":{
+        "uri":"model/ordersdetail.json",
+        "type": "JSON"
+      },
+      "CustomersJSONData":{
+        "uri":"model/customers.json",
+        "type": "JSON"
+      },
+      "ProductsJSONData":{
+        "uri":"model/products.json",
+        "type": "JSON"
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.125.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.techm.browseorders.i18n.i18n"
+        }
+      },
+      "OrderModel":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "OrdersJSONData"
+      },
+      "EmployeeModel":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "EmployeesJSONData"
+      },
+      "OrdersDetailModel":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "OrdersDetailJSONData"
+      },
+      "CustomersModel":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "CustomersJSONData"
+      },
+      "ProductsModel":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "ProductsJSONData"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.techm.browseorders.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": "",
+          "target": [
+            "TargetView1"
+          ]
+        },
+        {
+          "name": "RouteView2",
+          "pattern": "RouteView2/{OrderID}",
+          "target": [
+            "TargetView2"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "controlAggregation": "masterPages",
+          "viewId": "View1",
+          "viewName": "View1"
+        },
+        "TargetView2": {
+          "viewType": "XML",
+          "transition": "slide",
+          "controlAggregation": "detailPages",
+          "viewId": "View2",
+          "viewName": "View2"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.techm.browseorders.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}
